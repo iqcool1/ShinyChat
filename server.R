@@ -1,5 +1,8 @@
-library(shiny)
-library(stringr)
+list.of.packages <- c( "stringr","shiny")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages,repos = "http://cran.us.r-project.org")
+lapply(list.of.packages, require, character.only = TRUE)
+
 
 # Globally define a place where all users can share some reactive data.
 vars <- reactiveValues(chat=NULL, users=NULL)
